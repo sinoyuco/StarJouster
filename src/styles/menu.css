@@ -1,0 +1,11 @@
+.game-title{
+    font-family: 'Press Start 2P', cursive;
+}
+
+#sith-left{
+    display: none;
+}
+
+#sith-right{
+    display: none;
+}
