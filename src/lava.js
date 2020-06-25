@@ -28,6 +28,20 @@ class Lava {
         }
     }
 
+    eggCollision(egg){
+        let condition1 = (this.x < (egg.x + egg.width));
+        let condition2 = ((this.x + this.width) > egg.x);
+        let condition3 = (this.y < (egg.y + egg.height));
+        let condition4 = ((this.y + this.height) > egg.y);
+
+        if (condition1 && condition2 && condition3 && condition4) {
+            if (egg.y <= (this.y + this.height)) {
+                egg.y_vel = 0;
+                egg.y = (this.y - egg.height - 1);
+            }
+        }
+    }
+
 }
 
 

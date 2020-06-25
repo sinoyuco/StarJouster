@@ -12,8 +12,13 @@ class Egg{
         this.width = CONSTANTS.EGG_WIDTH;
         this.height = CONSTANTS.EGG_HEIGHT;
         this.y_vel = 0;
+
         this.status = 'unattainable';
+
         this.picture = false;
+
+        this.respawn = false;
+
         let that = this;
         setInterval(() => {
             that.picture = !that.picture;
@@ -23,6 +28,10 @@ class Egg{
         setTimeout(() => {
             that.status = 'attainable';
         },2000);
+
+        setTimeout(() => {
+            that.respawn = true;
+        }, 10000);
     }
 
     moveEgg() {
@@ -55,7 +64,6 @@ class Egg{
         }else{
             lightsaber = (this.picture ? 'lightsaber' : 'lightsaber-flashing');
         }
-        console.log(this.picture);
         let image = document.getElementById(lightsaber);
         ctx.drawImage(image, this.x-5, this.y-5, this.width+10, this.height+10);
     }

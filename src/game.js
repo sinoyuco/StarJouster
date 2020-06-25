@@ -3,6 +3,7 @@ import NPC from './npc';
 import Ledge from './ledge';
 import Lava from './lava';
 import Egg from './egg';
+import JoustAnimation from './animation_classes/joust_animation';
 
 const MODES = {
     'EASY': 3,
@@ -19,7 +20,7 @@ class StarJouster {
         // NPCs
         this.NPCs = [];
         for(let i=0; i < MODES['MEDIUM']; i++){
-            this.NPCs.push(new NPC(this.dimensions));
+            this.NPCs.push(new NPC(Math.floor(Math.random() * this.dimensions.width), Math.floor(Math.random() * this.dimensions.height)));
         }
 
         //Ledges 
@@ -40,8 +41,17 @@ class StarJouster {
         //eggs
         this.eggs = [];
 
+        //animations
+        this.animations = [];
+
         //Score
         this.score = 0;
+
+        //drawing stars
+        this.stars = [];
+        for (let i = 0; i < 125; i++) {
+            this.stars.push([Math.floor(Math.random() * this.dimensions.width), Math.floor(Math.random() * this.dimensions.height)]);
+        }
 
         //start game
         this.registerGameControls();
@@ -50,6 +60,8 @@ class StarJouster {
         //music
         this.music = document.getElementById('background-music');
         this.music.play();
+
+        
     }
 
     restart(){
@@ -117,13 +129,19 @@ class StarJouster {
             egg.animate(this.ctx);
         });
 
+        //animations
+        this.animations.forEach(animation => {
+            animation.animate(this.ctx);
+        });
+
         this.collisionCheck();
+        this.eggRespawn();
+        this.joustAnimationDisplay();
 
         requestAnimationFrame(this.animate.bind(this));
     }
 
     gameOver(){
-
         //score
         this.score = 0;
         //music
@@ -137,6 +155,13 @@ class StarJouster {
     drawBackground(ctx){
         ctx.fillStyle= "#191919";
         ctx.fillRect(0,0, this.dimensions.width, this.dimensions.height);
+
+        this.stars.forEach(star => {
+            ctx.fillStyle = "white";
+            ctx.fillRect(star[0],star[1],2,2);
+        });
+        
+
     }
 
     collisionCheck(){
@@ -182,6 +207,7 @@ class StarJouster {
 
         //lava
         that.lavas.forEach((lava) => {
+            //Jouster collision
             if(lava.collisionHandler(that.Jouster)){
                 if(that.Jouster.lives===1){
                     that.gameOver();
@@ -189,6 +215,11 @@ class StarJouster {
                     that.Jouster.dead();
                 }
             }
+
+            //egg collision
+            that.eggs.forEach(egg => {
+                lava.eggCollision(egg);
+            });
         });
 
         //eggs
@@ -198,12 +229,32 @@ class StarJouster {
                 //sound
                 let sound = document.getElementById('pickup');
                 sound.play();
-
+  
                 //increase score
                 that.score += 150;
+                that.animations.push(new JoustAnimation('score-tag', egg.x-10, egg.y-10, 1000));
 
                 //delete egg
                 that.eggs.splice(i, 1);
+            }
+        });
+    }
+
+    eggRespawn(){
+        let that = this;
+        this.eggs.forEach((egg,i) =>{
+            if(egg.respawn){
+                that.eggs.splice(i,1);
+                that.NPCs.push(new NPC(egg.x, egg.y));
+            }
+        });
+    }
+
+    joustAnimationDisplay(){
+        let that = this;
+        this.animations.forEach((animation,i) => {
+            if(animation.kill){
+                that.animations.splice(i,1);
             }
         });
     }

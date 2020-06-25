@@ -77,6 +77,11 @@ class Jouster{
         }else if(this.x < 0){
             this.x = this.dimensions.width;
         }
+
+        if (this.y <= 0){
+            this.y = 1;
+            this.y_vel = -(this.y_vel/4);
+        }
     }
 
     drawJouster(ctx){
@@ -114,7 +119,6 @@ class Jouster{
         this.y = 160;
         this.x_vel = 0;
         this.y_vel = 0;
-        console.log(this.lives);
         }, 2000);
     }
     

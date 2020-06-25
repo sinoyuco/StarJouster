@@ -2,7 +2,11 @@
     font-family: 'Press Start 2P', cursive;
 }
 
-#sith-left{
+.score-tag{
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* #sith-left{
     display: none;
 }
 
@@ -16,4 +20,4 @@
 
 #luke-right{
     display: none;
-}
+} */

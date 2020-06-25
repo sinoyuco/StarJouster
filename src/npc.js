@@ -7,10 +7,10 @@ const CONSTANTS = {
 
 
 class NPC {
-    constructor(dimensions) {
-        this.dimensions = dimensions;
-        this.x = Math.floor(Math.random() * dimensions.width);
-        this.y = Math.floor(Math.random() * dimensions.height);
+    constructor(x,y) {
+        // this.dimensions = dimensions;
+        this.x = x;
+        this.y = y;
         this.x_vel = (Math.random() < 0.5 ? -3 : 3);
         this.y_vel = 0;
         this.width = CONSTANTS.NPC_WIDTH;
@@ -40,13 +40,13 @@ class NPC {
         // }
 
         if (this.y > 400) {
-            this.y = 0;
+            this.y = Math.floor(Math.random()*400);
         }
 
-        if (this.x > this.dimensions.width) {
+        if (this.x > 1000) {
             this.x = 0;
         } else if (this.x < 0) {
-            this.x = this.dimensions.width;
+            this.x = 1000;
         }
     }
 
