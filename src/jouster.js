@@ -42,9 +42,17 @@ class Jouster{
 
         this.x += this.x_vel;
         if(this.x_vel > 0){
+            if(this.x_vel < CONSTANTS.DRAG){
+                this.x_vel=0;
+            }else{
             this.x_vel -= CONSTANTS.DRAG;
+            }
         }else if(this.x_vel < 0){
-            this.x_vel += CONSTANTS.DRAG;
+            if (-this.x_vel < CONSTANTS.DRAG) {
+                this.x_vel = 0;
+            } else {
+                this.x_vel -= CONSTANTS.DRAG;
+            }
         }
 
         if (Math.abs(this.x_vel) > CONSTANTS.TERMINAL_X_VELOCITY){
@@ -74,8 +82,8 @@ class Jouster{
     drawJouster(ctx){
         // ctx.fillStyle = "green";
         // ctx.fillRect(this.x, this.y, CONSTANTS.JOUSTER_WIDTH, CONSTANTS.JOUSTER_HEIGHT);
-
-        this.facing = (this.x_vel > 0 ? 'right' : 'left');   
+        this.facing = (this.x_vel > 0 ? 'right' : 'left');
+    
         let image;
         if(this.facing==='left'){
             image = document.getElementById('luke-left');
@@ -92,14 +100,22 @@ class Jouster{
     }
 
     dead(){
-            this.lives -= 1;
-            this.x = 1500;
-            this.y = 1500;
-            setTimeout(() => {
-                this.x = 450;
-                this.y = 160;
-                console.log(this.lives);
-            }, 2000);
+
+        let death_sound = document.getElementById('death-sound');
+        death_sound.play();
+
+        this.lives -= 1;
+        this.x = 1500;
+        this.y = 1500;
+
+
+        setTimeout(() => {
+        this.x = 450;
+        this.y = 160;
+        this.x_vel = 0;
+        this.y_vel = 0;
+        console.log(this.lives);
+        }, 2000);
     }
     
 

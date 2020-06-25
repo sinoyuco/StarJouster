@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="dist/main.js" charset="utf-8" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/src/styles/menu.css">
 </head>
 <body>
 
@@ -28,13 +29,25 @@
         <source src="/src/music/sounds/palpatine.mp3" />
     </audio>
 
-    <img src = "/src/images/sith_left.png" id="sith-left" class="hidden"/>
+    <audio autostart="false" id="death-sound">
+        <source src="/src/music/sounds/death.mp3" />
+    </audio>
 
-    <img src="/src/images/sith_right.png" id="sith-right" class="hidden"/>
+    <audio autostart="false" id="pickup">
+        <source src="/src/music/sounds/pickup.mp3" />
+    </audio>
+
+    <img src = "/src/images/sith_left.png" id="sith-left"/>
+
+    <img src="/src/images/sith_right.png" id="sith-right" />
 
     <img src="/src/images/luke_left.png" id="luke-left" />
 
     <img src="/src/images/luke_right.png" id="luke-right" />
+
+    <img src="/src/images/lightsaber_flashing.png" id="lightsaber-flashing" />
+
+    <img src="/src/images/lightsaber.png" id="lightsaber" />
 
     <h1 class="game-title">Star Jouster</h1>
     <canvas id="joust" height="500" width="1000"></canvas>

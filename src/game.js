@@ -2,6 +2,7 @@ import Jouster from './jouster';
 import NPC from './npc';
 import Ledge from './ledge';
 import Lava from './lava';
+import Egg from './egg';
 
 const MODES = {
     'EASY': 3,
@@ -36,9 +37,13 @@ class StarJouster {
         let right_lava = new Lava({ width: 250, height: 20, x: 750, y: (500 - 20) });
         this.lavas = [left_lava, right_lava];    
 
+        //eggs
+        this.eggs = [];
+
         //Score
         this.score = 0;
 
+        //start game
         this.registerGameControls();
         this.restart();
 
@@ -106,12 +111,22 @@ class StarJouster {
         this.NPCs.forEach(npc => {
             npc.animate(this.ctx);
         });
+
+        //eggs
+        this.eggs.forEach(egg =>{
+            egg.animate(this.ctx);
+        });
+
         this.collisionCheck();
 
         requestAnimationFrame(this.animate.bind(this));
     }
 
     gameOver(){
+
+        //score
+        this.score = 0;
+        //music
         this.music.pause();
         let game_over_sound = document.getElementById('palpatine');
         game_over_sound.play();
@@ -126,9 +141,10 @@ class StarJouster {
 
     collisionCheck(){
         //NPCs
+        let that = this;
         this.NPCs.forEach((npc,i) => {
-            if(npc.collidedWith(this.Jouster)){
-                if(npc.collide(this.Jouster)){
+            if(npc.collidedWith(that.Jouster)){
+                if(npc.collide(that.Jouster)){
 
                     //sound
                     let sounds = ['collision1', 'collision2', 'collision3'];
@@ -137,32 +153,57 @@ class StarJouster {
                     collision_sound.play();
 
                     //delete npc
-                    this.NPCs.splice(i,1);
+                    that.NPCs.splice(i,1);
+
+                    //spawn egg
+                   
+                    that.eggs.push(new Egg(npc.x, npc.y));
                 }else{
 
-                    if(this.Jouster.lives === 1){
-                        this.gameOver();
+                    if(that.Jouster.lives === 1){
+                        that.gameOver();
                     }else{
-                        this.Jouster.dead();
+                        that.Jouster.dead();
                     }
                 };
             }
         });
 
         //ledges
-        this.ledges.forEach((ledge) => {
-            ledge.collisionHandler(this.Jouster);
+        that.ledges.forEach((ledge) => {
+            //with jouster
+            ledge.collisionHandler(that.Jouster);
+            //with eggs
+            that.eggs.forEach(egg =>{
+                ledge.collisionHandler(egg);
+            });
+            
         });
 
         //lava
-        this.lavas.forEach((lava) => {
-            if(lava.collisionHandler(this.Jouster)){
-                if(this.Jouster.lives===1){
-                    this.gameOver();
+        that.lavas.forEach((lava) => {
+            if(lava.collisionHandler(that.Jouster)){
+                if(that.Jouster.lives===1){
+                    that.gameOver();
                 }else{
-                    this.Jouster.dead();
+                    that.Jouster.dead();
                 }
+            }
+        });
 
+        //eggs
+        that.eggs.forEach((egg,i) => {
+            if(egg.collisionHandler(that.Jouster)){
+
+                //sound
+                let sound = document.getElementById('pickup');
+                sound.play();
+
+                //increase score
+                that.score += 150;
+
+                //delete egg
+                that.eggs.splice(i, 1);
             }
         });
     }
