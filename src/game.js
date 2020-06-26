@@ -61,6 +61,7 @@ class StarJouster {
 
         //music
         this.music = document.getElementById('background-music');
+        this.music.volume = 0.2;
         this.music.play();
 
         
@@ -89,6 +90,8 @@ class StarJouster {
             } else if (event.isComposing || event.keyCode===39){
                 //arrow right
                 return that.moveRight();
+            } else if (event.isComposing || event.keyCode === 77){
+                return that.gameOver();
             }
 
         });
@@ -150,13 +153,23 @@ class StarJouster {
     gameOver(){
         //score
         // this.score = 0;
+
         //music
         this.music.pause();
         let game_over_sound = document.getElementById('palpatine');
+        game_over_sound.volume = 0.3;
         game_over_sound.play();
 
         this.running = false;
+
+        let cvs = document.getElementById('joust');
+        cvs.style.zIndex = '1';
         // debugger;
+
+        //menu music
+        let menu_music = document.getElementById('cantina');
+        menu_music.volume = 0.2;
+        menu_music.play();
     }
 
 
@@ -185,6 +198,7 @@ class StarJouster {
                         let sounds = ['collision1', 'collision2', 'collision3'];
                         let sampled_sound = sounds[Math.floor(Math.random() * sounds.length)];
                         let collision_sound = document.getElementById(sampled_sound);
+                        collision_sound.volume = 0.3;
                         collision_sound.play();
 
                         //delete npc
@@ -239,6 +253,7 @@ class StarJouster {
 
                 //sound
                 let sound = document.getElementById('pickup');
+                sound.volume = 0.3;
                 sound.play();
   
                 //increase score
