@@ -24,6 +24,7 @@ class JoustAnimation {
     drawJoustAnimation(ctx){
         const ele = document.getElementById(this.type);
         ctx.drawImage(ele, this.x, this.y);
+        
     }
 
     animate(ctx) {

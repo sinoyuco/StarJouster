@@ -6,20 +6,22 @@ import Egg from './egg';
 import JoustAnimation from './animation_classes/joust_animation';
 
 const MODES = {
-    'EASY': 3,
-    'MEDIUM': 6,
-    'HARD': 10
+    'easy': 6,
+    'medium': 10,
+    'hard': 15
 }
 
 class StarJouster {
-    constructor(canvas){
+    constructor(canvas, diff){
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.Jouster = new Jouster(this.dimensions);
+        this.diff = diff;
+        this.running = true;
 
         // NPCs
         this.NPCs = [];
-        for(let i=0; i < MODES['MEDIUM']; i++){
+        for(let i=0; i < MODES[this.diff]; i++){
             this.NPCs.push(new NPC(Math.floor(Math.random() * this.dimensions.width), Math.floor(Math.random() * this.dimensions.height)));
         }
 
@@ -138,16 +140,23 @@ class StarJouster {
         this.eggRespawn();
         this.joustAnimationDisplay();
 
-        requestAnimationFrame(this.animate.bind(this));
+        this.req = requestAnimationFrame(this.animate.bind(this));
+
+        if(!this.running){
+            cancelAnimationFrame(this.req);
+        }
     }
 
     gameOver(){
         //score
-        this.score = 0;
+        // this.score = 0;
         //music
         this.music.pause();
         let game_over_sound = document.getElementById('palpatine');
         game_over_sound.play();
+
+        this.running = false;
+        // debugger;
     }
 
 
@@ -169,28 +178,30 @@ class StarJouster {
         let that = this;
         this.NPCs.forEach((npc,i) => {
             if(npc.collidedWith(that.Jouster)){
-                if(npc.collide(that.Jouster)){
+                if(!that.Jouster.ethereal){
+                    if(npc.collide(that.Jouster)){
 
-                    //sound
-                    let sounds = ['collision1', 'collision2', 'collision3'];
-                    let sampled_sound = sounds[Math.floor(Math.random() * sounds.length)];
-                    let collision_sound = document.getElementById(sampled_sound);
-                    collision_sound.play();
+                        //sound
+                        let sounds = ['collision1', 'collision2', 'collision3'];
+                        let sampled_sound = sounds[Math.floor(Math.random() * sounds.length)];
+                        let collision_sound = document.getElementById(sampled_sound);
+                        collision_sound.play();
 
-                    //delete npc
-                    that.NPCs.splice(i,1);
+                        //delete npc
+                        that.NPCs.splice(i,1);
 
-                    //spawn egg
-                   
-                    that.eggs.push(new Egg(npc.x, npc.y));
-                }else{
-
-                    if(that.Jouster.lives === 1){
-                        that.gameOver();
+                        //spawn egg
+                    
+                        that.eggs.push(new Egg(npc.x, npc.y));
                     }else{
-                        that.Jouster.dead();
-                    }
-                };
+
+                        if(that.Jouster.lives === 1){
+                            that.gameOver();
+                        }else{
+                            that.Jouster.dead();
+                        }
+                    };
+                }
             }
         });
 
@@ -208,7 +219,7 @@ class StarJouster {
         //lava
         that.lavas.forEach((lava) => {
             //Jouster collision
-            if(lava.collisionHandler(that.Jouster)){
+            if(!that.Jouster.ethereal && lava.collisionHandler(that.Jouster)){
                 if(that.Jouster.lives===1){
                     that.gameOver();
                 }else{
@@ -245,7 +256,11 @@ class StarJouster {
         this.eggs.forEach((egg,i) =>{
             if(egg.respawn){
                 that.eggs.splice(i,1);
-                that.NPCs.push(new NPC(egg.x, egg.y));
+                that.animations.push(new JoustAnimation('lightning', egg.x - 5, egg.y - 5, 300));
+
+                const newNPC = new NPC(egg.x, egg.y)
+                that.NPCs.push(newNPC);
+                if (newNPC.y !== egg.y) { that.animations.push(new JoustAnimation('lightning', newNPC.x - 5, newNPC.y - 5, 300));}
             }
         });
     }

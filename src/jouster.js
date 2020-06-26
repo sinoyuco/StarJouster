@@ -21,7 +21,14 @@ class Jouster{
         this.width = CONSTANTS.JOUSTER_WIDTH;
         this.height = CONSTANTS.JOUSTER_HEIGHT;
         this.lives = 3;
-        this.facing = (this.x_vel >= 0 ? 'right' : 'left');    
+        this.facing = (this.x_vel >= 0 ? 'right' : 'left');
+
+        //spawn
+        this.ethereal = true;
+        let that = this;
+        setTimeout(() => {
+            that.ethereal = false;
+        }, 3000);
     }
 
     fly(){
@@ -91,11 +98,20 @@ class Jouster{
     
         let image;
         if(this.facing==='left'){
-            image = document.getElementById('luke-left');
-            ctx.drawImage(image, this.x-5, this.y-10, CONSTANTS.JOUSTER_WIDTH+10, CONSTANTS.JOUSTER_HEIGHT+15);
+            if (this.ethereal) {
+                image = document.getElementById('luke-left-frozen');
+            }else{
+                image = document.getElementById('luke-left');
+            }
+            ctx.drawImage(image, this.x - 5, this.y - 10, CONSTANTS.JOUSTER_WIDTH + 10, CONSTANTS.JOUSTER_HEIGHT + 15);
         }else{
-            image = document.getElementById('luke-right');
-            ctx.drawImage(image, this.x-5, this.y-10, CONSTANTS.JOUSTER_WIDTH+10, CONSTANTS.JOUSTER_HEIGHT+15);
+
+            if(this.ethereal){
+                image = document.getElementById('luke-right-frozen');
+            }else{
+                image = document.getElementById('luke-right');
+            }
+        ctx.drawImage(image, this.x-5, this.y-10, CONSTANTS.JOUSTER_WIDTH+10, CONSTANTS.JOUSTER_HEIGHT+15);
         }
     }
 
@@ -113,13 +129,19 @@ class Jouster{
         this.x = 1500;
         this.y = 1500;
 
-
+        let that = this;
         setTimeout(() => {
-        this.x = 450;
-        this.y = 160;
-        this.x_vel = 0;
-        this.y_vel = 0;
+        that.x = 450;
+        that.y = 160;
+        that.x_vel = 0;
+        that.y_vel = 0;
+        that.ethereal = true;
+        setTimeout(() => {
+            that.ethereal = false;
+        },3000);
         }, 2000);
+
+
     }
     
 

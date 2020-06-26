@@ -24,6 +24,7 @@ class Ledge {
 
         if(char.constructor.name === "Jouster"){
             if(condition1 && condition2 && condition3 && condition4){
+                debugger;
                 if(((char.x+char.width) >= this.x) || char.x <= (this.x + this.width)){
                     console.log('sideways');
                     char.x_vel = -(char.x_vel*0.75);
