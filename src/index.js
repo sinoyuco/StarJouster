@@ -1,4 +1,5 @@
 import './styles/index.scss';
+import './styles/menu.css';
 import StarJouster from './game';
 
 const canvas = document.getElementById('joust');
