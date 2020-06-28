@@ -123,6 +123,9 @@ class StarJouster {
             lava.animate(this.ctx);
         });
 
+        //score
+        this.drawScore(this.ctx);
+
         // Jouster and NPCs
         this.Jouster.animate(this.ctx);
         this.NPCs.forEach(npc => {
@@ -205,7 +208,6 @@ class StarJouster {
                         that.NPCs.splice(i,1);
 
                         //spawn egg
-                    
                         that.eggs.push(new Egg(npc.x, npc.y));
                     }else{
 
@@ -287,6 +289,24 @@ class StarJouster {
                 that.animations.splice(i,1);
             }
         });
+    }
+
+    drawScore(ctx){
+
+        let box_width = (this.score ===  0 ? 65 : 90);
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(456, 13, box_width+4, 24);
+
+        ctx.fillStyle = "#191919";
+        ctx.fillRect(458,15,box_width,20);
+
+
+        //text
+        ctx.font = "18px Sans Serif";
+        ctx.fillStyle = "white";
+        let str = `Score: ${this.score}`;
+        ctx.fillText(str, 460, 30);
     }
 
 }
