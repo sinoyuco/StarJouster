@@ -11,6 +11,12 @@ const MODES = {
     'hard': 15
 }
 
+const RESPAWN_TIMES = {
+    'easy':10000,
+    'medium':8000,
+    'hard':5000
+}
+
 class StarJouster {
     constructor(canvas, diff){
         this.ctx = canvas.getContext("2d");
@@ -63,6 +69,21 @@ class StarJouster {
         this.music = document.getElementById('background-music');
         this.music.volume = 0.2;
         this.music.play();
+
+        //npc additions
+        let that = this;
+        setInterval(() => {
+            debugger;
+            let new_npc_animation = new JoustAnimation('lightning', Math.floor(Math.random() * that.dimensions.width), Math.floor(Math.random() * that.dimensions.height), 0);
+            that.animations.push(new_npc_animation);
+
+            setTimeout(() => {
+                debugger;
+                let new_npc = new NPC(new_npc_animation.x, new_npc_animation.y);
+                that.NPCs.push(new_npc);
+            }, 500);
+            
+        }, RESPAWN_TIMES[this.diff]);
 
         
     }
