@@ -15,18 +15,30 @@ menu_music.play();
 easy_button.addEventListener('click', () => {
     menu_music.pause();
     canvas.style.zIndex = '4';
+
+    easy_button.blur();
+    canvas.focus();
+
     new StarJouster(canvas, 'easy');
 });
 
 medium_button.addEventListener('click', () => {
     menu_music.pause();
     canvas.style.zIndex = '4';
+
+    medium_button.blur();
+    canvas.focus();
+
     new StarJouster(canvas, 'medium')
 });
 
 hard_button.addEventListener('click', () => {
     menu_music.pause();
     canvas.style.zIndex = '4';
+
+    hard_button.blur();
+    canvas.focus();
+
     new StarJouster(canvas, 'hard')
 });
 
