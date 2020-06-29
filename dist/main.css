@@ -15,7 +15,7 @@
     width: 1000px;
     height: 500px;
     background: black;
-    z-index: 2;
+    z-index: 3;
 }
 .game-title{
     margin-left: 50px;
@@ -27,7 +27,7 @@
     position: absolute;
     top: 100px;
     left: 100px;
-    z-index: 1;
+    z-index: 2;
 } 
 
 .main{
@@ -206,6 +206,63 @@ a{
     text-decoration: none;
     outline: none;
     color: white;
+}
+
+#score-submit{
+    /* display: block; */
+    position: absolute;
+    top: 250px;
+    left: 500px;
+    color: white;
+    background: lightpink;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+}
+
+#score-submit-form{
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+#score-submit-username-label{
+    font-family: 'Press Start 2P', cursive;
+    margin: 0 auto;
+    width: 80%;
+}
+
+#score-submit-username{
+    width: 80%;
+    margin: 0 auto;
+    font-family: 'Press Start 2P', cursive;
+    height: 20px;
+    background: black;
+    border: 1px solid white;
+    border-radius: 2px;
+    color: white;
+}
+
+#score-submit-button{
+    background: black;
+    color: white;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    padding: 5px;
+}
+
+#score-submit-button:hover{
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
 }
 
 /*# sourceMappingURL=main.css.map*/
