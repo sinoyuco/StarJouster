@@ -272,11 +272,11 @@ class StarJouster {
         that.ledges.forEach((ledge) => {
             //with jouster
             ledge.collisionHandler(that.Jouster);
+
             //with eggs
-            that.eggs.forEach(egg =>{
-                ledge.collisionHandler(egg);
+            that.eggs.forEach(egg => {
+                ledge.eggCollision(egg);
             });
-            
         });
 
         //lava
