@@ -91,7 +91,7 @@ class StarJouster {
                 //arrow right
                 return that.moveRight();
             } else if (event.isComposing || event.keyCode === 77){
-                return that.gameOver();
+                return that.exitToMenu();
             }
 
         });
@@ -153,6 +153,17 @@ class StarJouster {
         }
     }
 
+    exitToMenu(){
+        this.music.pause();
+        this.running = false;
+        let cvs = document.getElementById('joust');
+        cvs.style.zIndex = '2';
+        //menu music
+        let menu_music = document.getElementById('cantina');
+        menu_music.volume = 0.2;
+        menu_music.play();
+    }
+
     gameOver(){
         //score
         // this.score = 0;
@@ -166,13 +177,28 @@ class StarJouster {
         this.running = false;
 
         let cvs = document.getElementById('joust');
-        cvs.style.zIndex = '1';
         // debugger;
 
-        //menu music
-        let menu_music = document.getElementById('cantina');
-        menu_music.volume = 0.2;
-        menu_music.play();
+        const score_submit_menu = document.getElementById('score-submit');
+        score_submit_menu.style.zIndex = '5';
+
+
+        const score_submit_button = document.getElementById('score-submit-button');
+
+        score_submit_button.addEventListener('click', () => {
+
+            //hide score submit menu
+            score_submit_button.style.zIndex = '1';
+            cvs.style.zIndex = '2';
+
+            //menu music
+            let menu_music = document.getElementById('cantina');
+            menu_music.volume = 0.2;
+            menu_music.play();
+        });
+
+        
+      
     }
 
 

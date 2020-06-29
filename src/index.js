@@ -14,19 +14,19 @@ menu_music.play();
 
 easy_button.addEventListener('click', () => {
     menu_music.pause();
-    canvas.style.zIndex = '3';
+    canvas.style.zIndex = '4';
     new StarJouster(canvas, 'easy');
 });
 
 medium_button.addEventListener('click', () => {
     menu_music.pause();
-    canvas.style.zIndex = '3';
+    canvas.style.zIndex = '4';
     new StarJouster(canvas, 'medium')
 });
 
 hard_button.addEventListener('click', () => {
     menu_music.pause();
-    canvas.style.zIndex = '3';
+    canvas.style.zIndex = '4';
     new StarJouster(canvas, 'hard')
 });
 
