@@ -123,7 +123,6 @@ class Jouster{
     dead(){
 
         let death_sound = document.getElementById('death-sound');
-        death_sound.volume = 0.3;
         death_sound.play();
 
         this.lives -= 1;

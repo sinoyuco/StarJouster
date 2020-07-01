@@ -67,7 +67,6 @@ class StarJouster {
 
         //music
         this.music = document.getElementById('background-music');
-        this.music.volume = 0.2;
         this.music.play();
 
         //npc additions
@@ -147,6 +146,9 @@ class StarJouster {
         //score
         this.drawScore(this.ctx);
 
+        //lives
+        this.drawLives(this.ctx);
+
         // Jouster and NPCs
         this.Jouster.animate(this.ctx);
         this.NPCs.forEach(npc => {
@@ -181,7 +183,6 @@ class StarJouster {
         cvs.style.zIndex = '2';
         //menu music
         let menu_music = document.getElementById('cantina');
-        menu_music.volume = 0.2;
         menu_music.play();
     }
 
@@ -192,7 +193,6 @@ class StarJouster {
         //music
         this.music.pause();
         let game_over_sound = document.getElementById('palpatine');
-        game_over_sound.volume = 0.3;
         game_over_sound.play();
 
         this.running = false;
@@ -214,7 +214,6 @@ class StarJouster {
 
             //menu music
             let menu_music = document.getElementById('cantina');
-            menu_music.volume = 0.2;
             menu_music.play();
         });
 
@@ -248,7 +247,6 @@ class StarJouster {
                         let sounds = ['collision1', 'collision2', 'collision3'];
                         let sampled_sound = sounds[Math.floor(Math.random() * sounds.length)];
                         let collision_sound = document.getElementById(sampled_sound);
-                        collision_sound.volume = 0.3;
                         collision_sound.play();
 
                         //delete npc
@@ -302,7 +300,6 @@ class StarJouster {
 
                 //sound
                 let sound = document.getElementById('pickup');
-                sound.volume = 0.3;
                 sound.play();
   
                 //increase score
@@ -343,17 +340,37 @@ class StarJouster {
         let box_width = (this.score ===  0 ? 65 : 90);
 
         ctx.fillStyle = "white";
-        ctx.fillRect(456, 13, box_width+4, 24);
+        ctx.fillRect(506, 13, box_width+4, 24);
 
         ctx.fillStyle = "#191919";
-        ctx.fillRect(458,15,box_width,20);
+        ctx.fillRect(508,15,box_width,20);
 
 
         //text
         ctx.font = "18px Sans Serif";
         ctx.fillStyle = "white";
         let str = `Score: ${this.score}`;
-        ctx.fillText(str, 460, 30);
+        ctx.fillText(str, 510, 30);
+    }
+
+    drawLives(ctx) {
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(396, 13, 59, 24);
+
+        ctx.fillStyle = "#191919";
+        ctx.fillRect(398, 15, 55, 20);
+
+
+        //heart
+        const heart = document.getElementById('heart');
+        ctx.drawImage(heart, 393, 10, 40, 40);
+
+        //text
+        ctx.font = "18px Sans Serif";
+        ctx.fillStyle = "white";
+        let str = `x ${this.Jouster.lives}`;
+        ctx.fillText(str, 425, 30);
     }
 
 }

@@ -95,14 +95,22 @@
 
         <img src="./src/images/score.png" id="score-tag" />
         <img src="./src/images/lightning.png" id="lightning" />
+        <img src="./src/images/heart.png" id="heart">
+        <img src="./src/images/muted.png" id="muted">
+        <img src="./src/images/unmuted.png" id="unmuted">
 
     </div>
 
-    <div class="main">
-        <canvas id="joust" height="500" width="1000"></canvas>
-    </div>
+    <!-- <div class="main"> -->
+    
+    <canvas id="joust" height="500" width="1000"></canvas>
+    
 
     <div class="menu">
+        
+        <div id="music-button">
+            <img id="music-button-image" src="./src/images/unmuted.png">
+        </div>
 
         <div class="how-to-play">
             <h3>How to Play:</h3>
@@ -139,9 +147,11 @@
             
         </div>
     </div>
+    <!-- </div> -->
 
     <div id="score-submit">
         <form id="score-submit-form">
+            <h2 id="game-over">GAME OVER</h2>
             <label id="score-submit-username-label" for="score-submit-username">Name: </label>
             <input type="text" value="" id="score-submit-username" placeholder="Guest">
             <input type="submit" value="Submit" id="score-submit-button">
