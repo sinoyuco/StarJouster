@@ -1,4 +1,8 @@
 ### StarJouster
+
+![Menu](https://sinoyuco.github.io/StarJouster/src/images/starj_menu.png)
+
+
 StarJouster is a 2D arcade clone of the popular arcade platform game 'Joust' with a Star Wars Theme. 
 The main purpose of the game is to score as many points as possible, by defeating sith lords in joust battles and looting their lightsabers.
 The player can control their character using the arrow keys to give direction, and by hitting the space key to fly.
@@ -6,11 +10,15 @@ If lightsabers are not looted, sith lords will respawn and soon the player will 
 
 [Live](https://sinoyuco.github.io/StarJouster/)
 
+
+
 ## Technologies Used
 The game functionality was primarily built on a canvas element, using plain old JavaScript. Using a multitude of classes that represent different elements in the game like the Jouster, sith lords, ledges, lightsabers and lava, the game was bundled together using webpack.
 
 
 ## Technical Challenges
+
+
 The main technical challenge within this game was correctly constructing the interactions between the different classes within the game outlined above. The Jouster will collide with sith lords and a winner will emerge based on the directions the characters are facing and their relative vertical positions. Jousters need to bounce of off ledges, while lightsabers need to stay on the ledge (or lava) they fall on. 
 
 ```
@@ -28,6 +36,8 @@ eggCollision(egg) {
         }
     }
 ```
+
+![Gameplay](https://sinoyuco.github.io/StarJouster/src/images/starj_game.png)
 
 The above code snippet depicts the interactions between ledges (this) and lightsabers (dubbed eggs as per the original game).
 Essentially, all objects are rectangles on the canvas, periodically rendered every utilizing `<Window.requestAnimationFrame>` on the animation method that moves objects and checks for collisions. For them to collide, all of the 4 conditions depicted above must be met. Since lightsabers only have a y-velocity produced by gravity, we expect all collisions to be on the ledges' upper side.
