@@ -35,10 +35,8 @@ class Lava {
         let condition4 = ((this.y + this.height) > egg.y);
 
         if (condition1 && condition2 && condition3 && condition4) {
-            if (egg.y <= (this.y + this.height)) {
-                egg.y_vel = 0;
-                egg.y = (this.y - egg.height - 1);
-            }
+            egg.y_vel = 0;
+            egg.y = (this.y - egg.height - 1);
         }
     }
 

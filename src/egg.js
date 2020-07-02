@@ -38,11 +38,6 @@ class Egg{
         this.y += this.y_vel;
         this.y_vel += CONSTANTS.GRAVITY;
 
-        // if (this.x > CONSTANTS.EGG_WIDTH) {
-        //     this.x = 0;
-        // } else if (this.x < 0) {
-        //     this.x = CONSTANTS.EGG_WIDTH;
-        // }
 
         if (Math.abs(this.y_vel) > CONSTANTS.TERMINAL_Y_VELOCITY) {
             if (this.y_vel > 0) {
