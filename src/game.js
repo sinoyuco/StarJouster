@@ -72,12 +72,10 @@ class StarJouster {
         //npc additions
         let that = this;
         setInterval(() => {
-            debugger;
             let new_npc_animation = new JoustAnimation('lightning', Math.floor(Math.random() * that.dimensions.width), Math.floor(Math.random() * that.dimensions.height), 0);
             that.animations.push(new_npc_animation);
 
             setTimeout(() => {
-                debugger;
                 let new_npc = new NPC(new_npc_animation.x, new_npc_animation.y);
                 that.NPCs.push(new_npc);
             }, 500);
