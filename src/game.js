@@ -195,54 +195,50 @@ class StarJouster {
 
         this.running = false;
 
-        let cvs = document.getElementById('joust');
         debugger;
+        // let cvs = document.getElementById('joust');
+        // cvs.style.zIndex = '2';
+        
+        let leaderboard_right = document.getElementById('leaderboard-right');
+        leaderboard_right.style.zIndex = '4';
 
-        const score_submit_menu = document.getElementById('score-submit');
-        score_submit_menu.style.zIndex = '6';
+        // score_submit_button.addEventListener('click', () => {
 
+        //     //save score to localStorage
+        //     localStorage.setItem(document.getElementById('score-submit-username').value, that.score);
 
-        const score_submit_button = document.getElementById('score-submit-button');
+        //     //populate scoreboard
+        //     const scoreboard_names = document.getElementById('leaderboard-names');
+        //     const scoreboard_scores = document.getElementById('leaderboard-scores');
+        //     let scores = { 'Sinan': 1500, 'Al': 1250 };
+        //     for (let i = 0; i < localStorage.length; i++) {
+        //         if (!['game','loglevel:webpack-dev-server'].includes(localStorage.key(i))){
+        //             scores[localStorage.key(i)] = parseInt(localStorage.getItem(localStorage.key(i)));
+        //         }
+        //     }
+        //     let sorted_names = Object.keys(scores).sort(function (x, y) { return scores[x] - scores[y] });
+        //     sorted_names.reverse().forEach(name => {
+        //         let liname = document.createElement('li');
+        //         liname.innerHTML = `${name}`;
+        //         scoreboard_names.append(liname);
 
-        let that = this;
+        //         let liscore = document.createElement('li');
+        //         liscore.innerHTML = `${scores[name]}`;
+        //         scoreboard_scores.append(liscore);
+        //     });
+        //     // console.log('what about this?')
+        //     //hide score submit menu
+        //     debugger;
+        //     score_submit_menu.style.zIndex = '2';
+        //     cvs.style.zIndex = '3';
 
-        score_submit_button.addEventListener('click', () => {
-
-            //save score to localStorage
-            localStorage.setItem(document.getElementById('score-submit-username').value, that.score);
-
-            //populate scoreboard
-            const scoreboard_names = document.getElementById('leaderboard-names');
-            const scoreboard_scores = document.getElementById('leaderboard-scores');
-            let scores = { 'Sinan': 1500, 'Al': 1250 };
-            for (let i = 0; i < localStorage.length; i++) {
-                if (!['game','loglevel:webpack-dev-server'].includes(localStorage.key(i))){
-                    scores[localStorage.key(i)] = parseInt(localStorage.getItem(localStorage.key(i)));
-                }
-            }
-            let sorted_names = Object.keys(scores).sort(function (x, y) { return scores[x] - scores[y] });
-            sorted_names.reverse().forEach(name => {
-                let liname = document.createElement('li');
-                liname.innerHTML = `${name}`;
-                scoreboard_names.append(liname);
-
-                let liscore = document.createElement('li');
-                liscore.innerHTML = `${scores[name]}`;
-                scoreboard_scores.append(liscore);
-            });
-            // console.log('what about this?')
-            //hide score submit menu
-            debugger;
-            score_submit_menu.style.zIndex = '2';
-            cvs.style.zIndex = '3';
-
-            const leaderboard_pane = document.getElementById('leaderboard');
-            leaderboard_pane.style.zIndex = '7';
-            console.log('a');
+        //     const leaderboard_pane = document.getElementById('leaderboard');
+        //     leaderboard_pane.style.zIndex = '7';
+        //     console.log('a');
            
-            //blur
-            // score_submit_button.blur();
-        });
+        //     //blur
+        //     // score_submit_button.blur();
+        // });
 
         
       

@@ -9,9 +9,9 @@ const medium_button = document.getElementById('medium-button');
 const hard_button = document.getElementById('hard-button');
 const music_button = document.getElementById('music-button');
 
-const leaderboard_play_again = document.getElementById('leaderboard-play-again');
-const leaderboard_back_to_menu = document.getElementById('leaderboard-back-to-menu');
-const score_submit_button = document.getElementById('score-submit-button');
+const play_again = document.getElementById('leaderboard-play-again');
+const back_to_menu = document.getElementById('leaderboard-back-to-menu');
+// const score_submit_button = document.getElementById('score-submit-button');
 
 let background_music = document.getElementById('background-music');
 let collision1 = document.getElementById('collision1');
@@ -40,7 +40,7 @@ music_button.addEventListener('click', () => {
 
 easy_button.addEventListener('click', () => {
     menu_music.pause();
-    canvas.style.zIndex = '5';
+    canvas.style.zIndex = '4';
     easy_button.blur();
     canvas.focus();
 
@@ -52,7 +52,7 @@ easy_button.addEventListener('click', () => {
 
 medium_button.addEventListener('click', () => {
     menu_music.pause();
-    canvas.style.zIndex = '5';
+    canvas.style.zIndex = '4';
 
     medium_button.blur();
     canvas.focus();
@@ -65,7 +65,7 @@ medium_button.addEventListener('click', () => {
 
 hard_button.addEventListener('click', () => {
     menu_music.pause();
-    canvas.style.zIndex = '5';
+    canvas.style.zIndex = '4';
 
     hard_button.blur();
     canvas.focus();
@@ -77,27 +77,31 @@ hard_button.addEventListener('click', () => {
 });
 
 
-leaderboard_play_again.addEventListener('click', () => {
-    const leaderboard_pane = document.getElementById('leaderboard');
-    leaderboard_pane.style.zIndex = '1';
+play_again.addEventListener('click', () => {
+    debugger;
+    const leaderboard_right = document.getElementById('leaderboard-right');
+    leaderboard_right.style.zIndex = '1';
 
-    canvas.style.zIndex = '5';
-    leaderboard_play_again.blur();
+    canvas.style.zIndex = '4';
+    play_again.blur();
     canvas.focus();
+    debugger;
+    const fetched_difficulty = (['easy', 'medium', 'hard'].includes(localStorage.getItem('game')) ? localStorage.getItem('game') : 'medium');
 
-    new StarJouster(canvas, localStorage.getItem('game'));
+    new StarJouster(canvas, fetched_difficulty);
 });
 
-leaderboard_back_to_menu.addEventListener('click', () => {
-    const leaderboard_pane = document.getElementById('leaderboard');
-    leaderboard_pane.style.zIndex = '1';
-
-    //blur
-    leaderboard_back_to_menu.blur();
-
+back_to_menu.addEventListener('click', () => {
+    debugger;
+    const leaderboard_right = document.getElementById('leaderboard-right');
+    leaderboard_right.style.zIndex = '1';
+    canvas.style.zIndex = '2';
     //menu music
     let menu_music = document.getElementById('cantina');
     menu_music.play();
+    debugger;
+    //blur
+    back_to_menu.blur();
 });
 
 // new StarJouster(canvas,'easy');
