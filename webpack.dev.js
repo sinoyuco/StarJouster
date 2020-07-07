@@ -6,7 +6,7 @@ module.exports = merge(common, {
     devtool: "inline-source-map",
     devServer: {
         contentBase: "./",
-        watchContentBase: true,
+        watchContentBase: false,
         open: "Google Chrome"
     }
 });

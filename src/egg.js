@@ -49,9 +49,6 @@ class Egg{
     }
 
     drawEgg(ctx) {
-        // let clr = (this.status === 'unattainable' ? 'orange' : 'black');
-        // ctx.fillStyle = clr;
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
         
         let lightsaber;
         if(this.status === 'unattainable'){

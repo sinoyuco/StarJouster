@@ -37,11 +37,13 @@ music_button.addEventListener('click', () => {
 easy_button.addEventListener('click', () => {
     menu_music.pause();
     canvas.style.zIndex = '4';
-    music_button.style.zIndex = '50';
     easy_button.blur();
     canvas.focus();
 
+    localStorage.setItem('game', 'easy');
+
     new StarJouster(canvas, 'easy');
+    
 });
 
 medium_button.addEventListener('click', () => {
@@ -51,7 +53,10 @@ medium_button.addEventListener('click', () => {
     medium_button.blur();
     canvas.focus();
 
-    new StarJouster(canvas, 'medium')
+    localStorage.setItem('game', 'medium');
+
+    new StarJouster(canvas, 'medium');
+    
 });
 
 hard_button.addEventListener('click', () => {
@@ -61,7 +66,10 @@ hard_button.addEventListener('click', () => {
     hard_button.blur();
     canvas.focus();
 
+    localStorage.setItem('game', 'hard');
+
     new StarJouster(canvas, 'hard')
+    
 });
 
 

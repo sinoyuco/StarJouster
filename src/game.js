@@ -204,15 +204,45 @@ class StarJouster {
 
         const score_submit_button = document.getElementById('score-submit-button');
 
+        let that = this;
+
         score_submit_button.addEventListener('click', () => {
 
-            //hide score submit menu
-            score_submit_button.style.zIndex = '1';
-            cvs.style.zIndex = '2';
+            //save score to localStorage
+            localStorage.setItem(document.getElementById('score-submit-username').value, that.score);
 
+            //populate scoreboard
+            const scoreboard_names = document.getElementById('leaderboard-names');
+            const scoreboard_scores = document.getElementById('leaderboard-scores');
+            let scores = { 'Sinan': 1500, 'Al': 1250 };
+            for (let i = 0; i < localStorage.length; i++) {
+                if (!['game','loglevel:webpack-dev-server'].includes(localStorage.key(i))){
+                    scores[localStorage.key(i)] = parseInt(localStorage.getItem(localStorage.key(i)));
+                }
+            }
+            let sorted_names = Object.keys(scores).sort(function (x, y) { return scores[x] - scores[y] });
+            sorted_names.reverse().forEach(name => {
+                let liname = document.createElement('li');
+                liname.innerHTML = `${name}`;
+                scoreboard_names.append(liname);
+
+                let liscore = document.createElement('li');
+                liscore.innerHTML = `${scores[name]}`;
+                scoreboard_scores.append(liscore);
+            });
+            debugger;
+            consol.log('can you read this?')
+            debugger
+            // console.log('what about this?')
+            //hide score submit menu
+            score_submit_menu.style.zIndex = '1';
+            cvs.style.zIndex = '2';
+            
+            debugger;
             //menu music
             let menu_music = document.getElementById('cantina');
             menu_music.play();
+           
         });
 
         

@@ -304,3 +304,13 @@ a{
     cursor: pointer;
     border: 1px solid #ffffff;
 }
+
+#leaderboard-main{
+    display: flex;
+    justify-content: space-between;
+}
+
+#leaderboard{
+    position: absolute;
+    top: 600px;
+}
