@@ -196,10 +196,10 @@ class StarJouster {
         this.running = false;
 
         let cvs = document.getElementById('joust');
-        // debugger;
+        debugger;
 
         const score_submit_menu = document.getElementById('score-submit');
-        score_submit_menu.style.zIndex = '5';
+        score_submit_menu.style.zIndex = '6';
 
 
         const score_submit_button = document.getElementById('score-submit-button');
@@ -230,17 +230,18 @@ class StarJouster {
                 liscore.innerHTML = `${scores[name]}`;
                 scoreboard_scores.append(liscore);
             });
-            debugger;
             // console.log('what about this?')
             //hide score submit menu
-            score_submit_menu.style.zIndex = '1';
-            cvs.style.zIndex = '2';
-            
             debugger;
-            //menu music
-            let menu_music = document.getElementById('cantina');
-            menu_music.play();
+            score_submit_menu.style.zIndex = '2';
+            cvs.style.zIndex = '3';
+
+            const leaderboard_pane = document.getElementById('leaderboard');
+            leaderboard_pane.style.zIndex = '7';
+            console.log('a');
            
+            //blur
+            // score_submit_button.blur();
         });
 
         

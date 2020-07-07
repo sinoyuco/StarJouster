@@ -58,7 +58,7 @@ class Jouster{
             if (-this.x_vel < CONSTANTS.DRAG) {
                 this.x_vel = 0;
             } else {
-                this.x_vel -= CONSTANTS.DRAG;
+                this.x_vel += CONSTANTS.DRAG;
             }
         }
 

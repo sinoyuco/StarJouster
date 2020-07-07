@@ -14,7 +14,7 @@
     width: 1000px;
     height: 500px;
     background: black;
-    z-index: 3;
+    z-index: 4;
 }
 .game-title{
     margin-left: 50px;
@@ -27,7 +27,7 @@
     left: 50%;
     margin-left: -500px;
     top: 100px;
-    z-index: 2;
+    z-index: 3;
 } 
 
 .main{
@@ -230,7 +230,7 @@ a{
     color: white;
     width: 200px;
     height: 200px;
-    z-index: 1;
+    z-index: 2;
 }
 
 #score-submit-form{
@@ -311,6 +311,79 @@ a{
 }
 
 #leaderboard{
+    display: flex;
     position: absolute;
-    top: 600px;
+    top: 200px;
+    left: 50%;
+    margin-left: -203px;
+    background: black;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+    min-height: 200px;
+    min-width: 200px;
+    z-index: 1;
+}
+
+#leaderboard li{
+    list-style-type: none;
+}
+
+#leaderboard-left{
+    padding: 10px;
+    margin-right: 10px;
+}
+
+#leaderboard-right{
+    border-left: 2px solid white;
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#leaderboard-play-again{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    border: 1px solid white;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 120px;
+}
+
+#leaderboard-play-again:hover{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#leaderboard-back-to-menu{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    border: 1px solid white;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 120px;
+    margin-top: 20px;
+}
+
+#leaderboard-back-to-menu:hover{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#leaderboard-headers span{
+    text-decoration: underline;
+    padding-left: 20px;
+}
+
+#leaderboard-names{
+    padding-left: 20px;
+}
+
+#leaderboard-scores{
+    padding-left: 20px;
 }
