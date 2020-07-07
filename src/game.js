@@ -231,8 +231,6 @@ class StarJouster {
                 scoreboard_scores.append(liscore);
             });
             debugger;
-            consol.log('can you read this?')
-            debugger
             // console.log('what about this?')
             //hide score submit menu
             score_submit_menu.style.zIndex = '1';
