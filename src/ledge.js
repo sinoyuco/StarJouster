@@ -32,7 +32,7 @@ class Ledge {
 
 
                 if(top_left && top_right){
-                    char.y = this.y+this.height+1;
+                    char.y = this.y+this.height+0.1;
                     char.y_vel = -(char.y_vel * 0.25);
                     
                 }else if(bot_left && bot_right){
@@ -40,7 +40,7 @@ class Ledge {
                     char.y_vel = -(char.y_vel * 0.25);
 
                 }else if (top_left && bot_left){
-                    char.x = this.x + this.width + 1;
+                    char.x = this.x + this.width +1;
                     char.x_vel = -(char.x_vel * 0.25);
 
                 }else if (top_right && bot_right){
@@ -54,7 +54,7 @@ class Ledge {
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
                         debugger;
-                        char.y = this.y - char.height - 1;
+                        char.y = this.y - char.height - 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
 
@@ -66,7 +66,7 @@ class Ledge {
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
                         debugger;
-                        char.y = this.y - char.height - 1;
+                        char.y = this.y - char.height - 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
                 }else if(top_left){
@@ -77,7 +77,7 @@ class Ledge {
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
                         debugger;
-                        char.y = this.y + this.height + 1;
+                        char.y = this.y + this.height + 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
 
@@ -89,7 +89,7 @@ class Ledge {
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
                         debugger;
-                        char.y = this.y + this.height + 1;
+                        char.y = this.y + this.height + 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
                 }else{
