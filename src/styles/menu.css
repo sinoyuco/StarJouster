@@ -49,6 +49,7 @@
 }
 
 .header{
+    position: relative;
     display: flex;
     width: 1150px;
     margin: 10px auto;
@@ -214,6 +215,27 @@ body{
     color: lightgray;
     cursor: pointer;
 }
+
+.fa-angellist{
+    font-size: 40px;
+    margin: auto 40px;
+}
+
+.fa-angellist:hover{
+    color: lightgray;
+    cursor: pointer;
+}
+
+.fa-user-circle{
+    font-size: 40px;
+    margin: auto 40px;
+}
+
+.fa-user-circle:hover{
+    color: lightgray;
+    cursor: pointer;
+}
+
 
 a{
     text-decoration: none;
@@ -396,4 +418,11 @@ a{
 
 #leaderboard-scores{
     padding-left: 20px;
+}
+
+.byline{
+    position: absolute;
+    top: 50px;
+    left: 35%;
+    font-family: 'Press Start 2P', cursive;
 }

@@ -47,48 +47,36 @@ class Ledge {
                     char.x = this.x - char.width - 1;
                     char.x_vel = -(char.x_vel * 0.25);
                 }else if(bot_left){
-                    debugger;
                     if(((this.x+this.width)-char.x) < (char.y+char.height)-this.y){
-                        debugger;
                         char.x = this.x + this.width + 1;
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
-                        debugger;
                         char.y = this.y - char.height - 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
 
                 }else if(bot_right){
-                    debugger;
                     if((char.x+char.width)-this.x < (char.y+char.height) - this.y){
-                        debugger;
                         char.x = this.x - char.width - 1;
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
-                        debugger;
                         char.y = this.y - char.height - 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
                 }else if(top_left){
-                    debugger;
                     if(((this.x+this.width)-char.x) < (this.y+this.height)-char.y){
-                        debugger;
                         char.x = this.x + this.width + 1;
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
-                        debugger;
                         char.y = this.y + this.height + 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
 
                 }else if(top_right){
-                    debugger;
                     if(((char.x + char.width)-this.x) < ((this.y+this.height)-char.y)){
-                        debugger;
                         char.x = this.x - char.width - 1;
                         char.x_vel = -(char.x_vel * 0.25);
                     }else{
-                        debugger;
                         char.y = this.y + this.height + 0.1;
                         char.y_vel = -(char.y_vel * 0.25);
                     }
