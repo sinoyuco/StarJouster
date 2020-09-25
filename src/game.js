@@ -99,16 +99,16 @@ class StarJouster {
 
         document.addEventListener("keydown", event => {
 
-            if(event.isComposing || event.keyCode===32){
+            if(event.isComposing || event.key===' '){
                 // Space - fly
                return that.space();
-            } else if (event.isComposing || event.keyCode===37){
+            } else if (event.isComposing || event.key==='ArrowLeft'){
                 //arrow left
                 return that.moveLeft();
-            } else if (event.isComposing || event.keyCode===39){
+            } else if (event.isComposing || event.key==='ArrowRight'){
                 //arrow right
                 return that.moveRight();
-            } else if (event.isComposing || event.keyCode === 77){
+            } else if (event.isComposing || event.key === 'm'){
                 return that.exitToMenu();
             }
 
