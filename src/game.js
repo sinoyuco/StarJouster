@@ -97,7 +97,7 @@ class StarJouster {
         // this.rightBinder = this.moveRight.bind(this);
         let that = this;
 
-        document.addEventListener("keydown", event => {
+        document.addEventListener("keyup", event => {
 
             if(event.isComposing || event.key===' '){
                 // Space - fly
