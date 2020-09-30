@@ -128,52 +128,63 @@ class StarJouster {
     }
 
     animate(){
+        
+        // framerate limitation test
+        let frameRatePerSecond = 80;
+        
         //background
-        this.drawBackground(this.ctx);
 
-        //Ledges
-        this.ledges.forEach(ledge => {
-            ledge.animate(this.ctx);
-        });
+        let that = this;
 
-        //lava
-        this.lavas.forEach(lava => {
-            lava.animate(this.ctx);
-        });
+        setTimeout(() => {
 
+            
+            that.drawBackground(that.ctx);
+            
+            //Ledges
+            that.ledges.forEach(ledge => {
+                ledge.animate(that.ctx);
+            });
+            
+            //lava
+            that.lavas.forEach(lava => {
+                lava.animate(that.ctx);
+            });
+            
         //score
-        this.drawScore(this.ctx);
-
+        that.drawScore(that.ctx);
+        
         //lives
-        this.drawLives(this.ctx);
-
+        that.drawLives(that.ctx);
+        
         // Jouster and NPCs
-        this.Jouster.animate(this.ctx);
-        this.NPCs.forEach(npc => {
-            npc.animate(this.ctx);
+        that.Jouster.animate(that.ctx);
+        that.NPCs.forEach(npc => {
+            npc.animate(that.ctx);
         });
-
+        
         //eggs
-        this.eggs.forEach(egg =>{
-            egg.animate(this.ctx);
+        that.eggs.forEach(egg =>{
+            egg.animate(that.ctx);
         });
-
+        
         //animations
-        this.animations.forEach(animation => {
-            animation.animate(this.ctx);
+        that.animations.forEach(animation => {
+            animation.animate(that.ctx);
         });
-
-        this.collisionCheck();
-        this.eggRespawn();
-        this.joustAnimationDisplay();
-
-        this.req = requestAnimationFrame(this.animate.bind(this));
-
-        if(!this.running){
-            cancelAnimationFrame(this.req);
+        
+        that.collisionCheck();
+        that.eggRespawn();
+        that.joustAnimationDisplay();
+        
+        that.req = requestAnimationFrame(that.animate.bind(this));
+        
+        if(!that.running){
+            cancelAnimationFrame(that.req);
         }
+    }, 1000/frameRatePerSecond)
     }
-
+    
     exitToMenu(){
         this.music.pause();
         this.running = false;
